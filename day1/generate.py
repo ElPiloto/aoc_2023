@@ -1,8 +1,11 @@
-from absl import app
-import string
 import random
+import string
+import os
 
+from absl import app
 import numpy as np
+
+from hard_coded import part2
 
 
 digit_strs = {
@@ -27,7 +30,7 @@ def generate_solved_problem(
     word_flip_prob: float = 0.5,
 
 ) -> tuple[str, int, int, int]:
-  """."""
+  """Generates a solved problem."""
   start_len = np.random.randint(min_start_len, max_start_len+1)
   base = random.choices(string.ascii_letters[:26], k=start_len)
   num_numbers = 0
@@ -57,7 +60,7 @@ def main(argv):
   del argv
   counts = []
   num_numbers = []
-  for i in range(100000):
+  for _ in range(100000):
     puzzle, first, last, num = generate_solved_problem(max_start_len=20)
     print(puzzle, first, last)
     counts.append(len(puzzle))
@@ -70,4 +73,3 @@ def main(argv):
 
 if __name__ == "__main__":
   app.run(main)
-str_digits
